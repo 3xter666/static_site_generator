@@ -6,12 +6,10 @@ class TextType(Enum):
     BOLD = "bold"
     ITALIC = "italic"
     CODE = "code"
-    LINKS = "link"
-    IMAGES = "image"
-
-
+    LINKS = "links"
+    IMAGES = "images"
 class TextNode:
-    def __init__(self, text, text_type,url = None):
+    def __init__(self, text: str, text_type: TextType,url  = None):
         self.text = text
         self.text_type = text_type
         self.url = url
@@ -21,9 +19,9 @@ class TextNode:
         return (self.text == other.text and
                 self.text_type == other.text_type and
                 self.url == other.url)
-        def __repr__(self):
-            return f"TextNode({self.text}, {self.text_type}, {self.url})"
-    
+    def __repr__(self):
+        return (f"TextNode({self.text!r}, {self.text_type!r}, {self.url!r})")
+
 def text_node_to_html_node(text_node):
     if text_node.text_type == TextType.TEXT:
         return LeafNode(None, text_node.text)
